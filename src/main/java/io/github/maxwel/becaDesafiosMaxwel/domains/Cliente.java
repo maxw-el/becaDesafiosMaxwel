@@ -1,13 +1,11 @@
-package io.github.maxwel.becaDesafiosMaxwel;
+package io.github.maxwel.becaDesafiosMaxwel.domains;
 
 public class Cliente {
 
-    String nome;
-    String cpf;
+    private String nome;
+    private String cpf;
 
-    public Cliente(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
+    public Cliente() {
     }
 
     public String getNome() {

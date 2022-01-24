@@ -1,14 +1,20 @@
-package io.github.maxwel.becaDesafiosMaxwel;
+package io.github.maxwel.becaDesafiosMaxwel.domains;
 
 public class Servico {
 
-    Integer id;
-    String nome;
-    Double preco;
+    private Integer id;
+    private String nome;
+    private Double preco;
 
-    public Servico(String nome, Double preco) {
-        this.nome = nome;
-        this.preco = preco;
+    public Servico() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
