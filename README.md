@@ -7,4 +7,9 @@ O salão cadastra seus serviços. O cliente acessa esses serviços e faz um agen
 
 ### Diagrama Conceitual
 
-![Plataforma Beauty drawio](https://user-images.githubusercontent.com/95427724/150405515-5b8bdc83-675d-4de2-a67d-d229c0a92979.png)
+![Plataforma Beauty drawio](https://user-images.githubusercontent.com/95427724/150791763-33d10b77-6581-4909-9127-651e5f4c3a27.png)
+
+#### desafio2
+- Criadas as classes controllers (CRUD);
+- Implementado o OpenAPI na Spring Rest;
+- Implementado ResponseEntity nos retornos das chamadas.
