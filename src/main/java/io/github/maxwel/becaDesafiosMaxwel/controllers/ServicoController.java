@@ -1,10 +1,12 @@
 package io.github.maxwel.becaDesafiosMaxwel.controllers;
 
 import io.github.maxwel.becaDesafiosMaxwel.domains.Servico;
+import io.github.maxwel.becaDesafiosMaxwel.services.ServicoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,8 @@ import java.util.List;
 @RequestMapping("/servico")
 public class ServicoController {
 
+    @Autowired
+    private ServicoService servicoService;
 
     @Operation(summary = "Cria um serviço pela id.")
     @ApiResponses(value = {
@@ -26,7 +30,6 @@ public class ServicoController {
     })
     @PostMapping
     public ResponseEntity<Servico> criar(@RequestBody Servico servico) {
-        servico.setId(2);
 
         return ResponseEntity.created(null).body(servico);
     }
@@ -42,6 +45,7 @@ public class ServicoController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity deletar(@PathVariable Integer id) {
+        servicoService.deletar(id);
 
         return ResponseEntity.noContent().build();
     }
@@ -57,9 +61,9 @@ public class ServicoController {
     })
     @PatchMapping("/{id}")
     public ResponseEntity<Servico> atualizar(@RequestBody Servico servico, @PathVariable Integer id) {
-        servico.setId(id);
+        Servico servicoAtualizado = servicoService.atualizar(servico, id);
 
-        return ResponseEntity.ok(servico);
+        return ResponseEntity.ok(servicoAtualizado);
     }
 
     @Operation(summary = "Obtém um serviço pela id.")
@@ -73,12 +77,9 @@ public class ServicoController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Servico> obter(@PathVariable Integer id) {
-        Servico servico = new Servico();
-        servico.setId(id);
-        servico.setNome("Manicure");
-        servico.setPreco(15.00);
+        Servico servicoObtido = servicoService.obter(id);
 
-        return ResponseEntity.ok(servico);
+        return ResponseEntity.ok(servicoObtido);
     }
 
     @Operation(summary = "Obtém uma lista de serviços.")
@@ -92,15 +93,8 @@ public class ServicoController {
     })
     @GetMapping
     public ResponseEntity<List<Servico>> listar() {
-        Servico servico = new Servico();
-        servico.setId(3);
-        servico.setNome("Manicure");
-        servico.setPreco(15.00);
+        List<Servico> listaServicos = servicoService.listar();
 
-        return ResponseEntity.ok(
-                List.of(
-                        servico
-                )
-        );
+        return ResponseEntity.ok(listaServicos);
     }
 }
