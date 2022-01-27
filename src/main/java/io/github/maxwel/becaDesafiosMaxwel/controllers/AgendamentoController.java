@@ -1,12 +1,12 @@
 package io.github.maxwel.becaDesafiosMaxwel.controllers;
 
 import io.github.maxwel.becaDesafiosMaxwel.domains.Agendamento;
-import io.github.maxwel.becaDesafiosMaxwel.domains.Cliente;
-import io.github.maxwel.becaDesafiosMaxwel.domains.Servico;
+import io.github.maxwel.becaDesafiosMaxwel.services.AgendamentoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/agendamento")
 public class AgendamentoController {
+
+    @Autowired
+    private AgendamentoService agendamentoService;
 
     @Operation(summary = "Cria um agendamento pela id.")
     @ApiResponses(value = {
@@ -27,9 +30,9 @@ public class AgendamentoController {
     })
     @PostMapping
     public ResponseEntity<Agendamento> criar(@RequestBody Agendamento agendamento) {
-        agendamento.setId(2);
+        Agendamento agendamentoCriado = agendamentoService.criar(agendamento);
 
-        return ResponseEntity.created(null).body(agendamento);
+        return ResponseEntity.created(null).body(agendamentoCriado);
     }
 
     @Operation(summary = "Deleta um agendamento pela id.")
@@ -43,6 +46,7 @@ public class AgendamentoController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity deletar(@PathVariable Integer id) {
+        agendamentoService.deletar(id);
 
         return ResponseEntity.noContent().build();
     }
@@ -58,9 +62,9 @@ public class AgendamentoController {
     })
     @PatchMapping("/{id}")
     public ResponseEntity<Agendamento> atualizar(@RequestBody Agendamento agendamento, @PathVariable Integer id) {
-        agendamento.setId(id);
+        Agendamento agendamentoAtualizado = agendamentoService.atualizar(agendamento, id);
 
-        return ResponseEntity.ok(agendamento);
+        return ResponseEntity.ok(agendamentoAtualizado);
     }
 
     @Operation(summary = "Obtém um agendamento pela id.")
@@ -74,22 +78,9 @@ public class AgendamentoController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Agendamento> obter(@PathVariable Integer id) {
-        Servico servico = new Servico();
-        servico.setId(3);
-        servico.setNome("Manicure");
-        servico.setPreco(15.00);
+        Agendamento agendamentoObtido = agendamentoService.obter(id);
 
-        Cliente cliente = new Cliente();
-        cliente.setCpf("xxx xxx xxx xx");
-        cliente.setNome("Dayse Dourado");
-
-        Agendamento agendamento = new Agendamento();
-        agendamento.setId(id);
-        agendamento.setServico(servico);
-        agendamento.setHorario("23/01 às 10h");
-        agendamento.setCliente(cliente);
-
-        return ResponseEntity.ok(agendamento);
+        return ResponseEntity.ok(agendamentoObtido);
     }
 
     @Operation(summary = "Obtém uma lista de agendamentos.")
@@ -103,25 +94,8 @@ public class AgendamentoController {
     })
     @GetMapping
     public ResponseEntity<List<Agendamento>> listar() {
-        Servico servico = new Servico();
-        servico.setId(3);
-        servico.setNome("Manicure");
-        servico.setPreco(15.00);
+        List<Agendamento> listaAgendamentos = agendamentoService.listar();
 
-        Cliente cliente = new Cliente();
-        cliente.setCpf("xxx xxx xxx xx");
-        cliente.setNome("Dayse Dourado");
-
-        Agendamento agendamento = new Agendamento();
-        agendamento.setId(1);
-        agendamento.setServico(servico);
-        agendamento.setHorario("23/01 às 10h");
-        agendamento.setCliente(cliente);
-
-        return ResponseEntity.ok(
-                List.of(
-                        agendamento
-                )
-        );
+        return ResponseEntity.ok(listaAgendamentos);
     }
 }

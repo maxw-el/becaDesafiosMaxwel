@@ -9,6 +9,12 @@ public class Servico {
     public Servico() {
     }
 
+    public Servico(Integer id, String nome, Double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
+
     public Integer getId() {
         return id;
     }

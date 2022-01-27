@@ -11,6 +11,13 @@ public class Agendamento {
 
     }
 
+    public Agendamento(Integer id, Servico servico, String horario, Cliente cliente) {
+        this.id = id;
+        this.servico = servico;
+        this.horario = horario;
+        this.cliente = cliente;
+    }
+
     public Integer getId() {
         return id;
     }
