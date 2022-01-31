@@ -10,7 +10,7 @@ public interface ClienteService {
 
     public void deletar(String cpf);
 
-    public Cliente atualizar(Cliente clienteAtualizado, String cpf);
+    public Cliente atualizar(Cliente cliente, String cpf);
 
     public Cliente obter(String cpf);
 

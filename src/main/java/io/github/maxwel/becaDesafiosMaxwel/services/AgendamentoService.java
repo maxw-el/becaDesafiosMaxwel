@@ -8,11 +8,11 @@ public interface AgendamentoService {
 
     public Agendamento criar(Agendamento agendamento);
 
-    public void deletar(Integer id);
+    public void deletar(Long id);
 
-    public Agendamento atualizar(Agendamento agendamentoAtualizado, Integer id);
+    public Agendamento atualizar(Agendamento agendamento, Long id);
 
-    public Agendamento obter(Integer id);
+    public Agendamento obter(Long id);
 
     public List<Agendamento> listar();
 }

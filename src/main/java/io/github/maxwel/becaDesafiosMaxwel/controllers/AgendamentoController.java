@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/agendamento")
+@RequiredArgsConstructor
 public class AgendamentoController {
 
-    @Autowired
-    private AgendamentoService agendamentoService;
+    private final AgendamentoService agendamentoService;
 
     @Operation(summary = "Cria um agendamento pela id.")
     @ApiResponses(value = {
@@ -45,7 +45,7 @@ public class AgendamentoController {
                     content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity deletar(@PathVariable Integer id) {
+    public ResponseEntity deletar(@PathVariable Long id) {
         agendamentoService.deletar(id);
 
         return ResponseEntity.noContent().build();
@@ -61,7 +61,7 @@ public class AgendamentoController {
                     content = @Content)
     })
     @PatchMapping("/{id}")
-    public ResponseEntity<Agendamento> atualizar(@RequestBody Agendamento agendamento, @PathVariable Integer id) {
+    public ResponseEntity<Agendamento> atualizar(@RequestBody Agendamento agendamento, @PathVariable Long id) {
         Agendamento agendamentoAtualizado = agendamentoService.atualizar(agendamento, id);
 
         return ResponseEntity.ok(agendamentoAtualizado);
@@ -77,7 +77,7 @@ public class AgendamentoController {
                     content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Agendamento> obter(@PathVariable Integer id) {
+    public ResponseEntity<Agendamento> obter(@PathVariable Long id) {
         Agendamento agendamentoObtido = agendamentoService.obter(id);
 
         return ResponseEntity.ok(agendamentoObtido);

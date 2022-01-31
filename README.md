@@ -18,3 +18,8 @@ O salão cadastra seus serviços. O cliente acessa esses serviços e faz um agen
 - Implementadas as interfaces com os métodos utilizados;
 - Criação de services funcionais;
 - Integração com a camada controller.
+
+#### desafio4
+- Criadas as classes de repository;
+- Bando de dados H2 configurado;
+- Implementado na camada service.
