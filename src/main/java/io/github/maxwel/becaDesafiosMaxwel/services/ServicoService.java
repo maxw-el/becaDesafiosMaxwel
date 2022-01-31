@@ -8,11 +8,11 @@ public interface ServicoService {
 
     public Servico criar(Servico servico);
 
-    public void deletar(Integer id);
+    public void deletar(Long id);
 
-    public Servico atualizar(Servico servicoAtualizado, Integer id);
+    public Servico atualizar(Servico servico, Long id);
 
-    public Servico obter(Integer id);
+    public Servico obter(Long id);
 
     public List<Servico> listar();
 }

@@ -1,28 +1,38 @@
 package io.github.maxwel.becaDesafiosMaxwel.domains;
 
+import javax.persistence.*;
+
+@Entity
 public class Agendamento {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
     private Servico servico;
+
     private String horario;
+
+    @OneToOne
     private Cliente cliente;
 
     public Agendamento() {
 
     }
 
-    public Agendamento(Integer id, Servico servico, String horario, Cliente cliente) {
+    public Agendamento(Long id, Servico servico, String horario, Cliente cliente) {
         this.id = id;
         this.servico = servico;
         this.horario = horario;
         this.cliente = cliente;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

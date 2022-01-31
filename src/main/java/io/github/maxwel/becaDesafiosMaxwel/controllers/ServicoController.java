@@ -6,18 +6,18 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/servico")
 public class ServicoController {
 
-    @Autowired
-    private ServicoService servicoService;
+    private final ServicoService servicoService;
 
     @Operation(summary = "Cria um serviço pela id.")
     @ApiResponses(value = {
@@ -30,8 +30,9 @@ public class ServicoController {
     })
     @PostMapping
     public ResponseEntity<Servico> criar(@RequestBody Servico servico) {
+        Servico servicoCriado = servicoService.criar(servico);
 
-        return ResponseEntity.created(null).body(servico);
+        return ResponseEntity.created(null).body(servicoCriado);
     }
 
     @Operation(summary = "Deleta um serviço pela id.")
@@ -44,7 +45,7 @@ public class ServicoController {
                     content = @Content)
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity deletar(@PathVariable Integer id) {
+    public ResponseEntity deletar(@PathVariable Long id) {
         servicoService.deletar(id);
 
         return ResponseEntity.noContent().build();
@@ -60,7 +61,7 @@ public class ServicoController {
                     content = @Content)
     })
     @PatchMapping("/{id}")
-    public ResponseEntity<Servico> atualizar(@RequestBody Servico servico, @PathVariable Integer id) {
+    public ResponseEntity<Servico> atualizar(@RequestBody Servico servico, @PathVariable Long id) {
         Servico servicoAtualizado = servicoService.atualizar(servico, id);
 
         return ResponseEntity.ok(servicoAtualizado);
@@ -76,7 +77,7 @@ public class ServicoController {
                     content = @Content)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Servico> obter(@PathVariable Integer id) {
+    public ResponseEntity<Servico> obter(@PathVariable Long id) {
         Servico servicoObtido = servicoService.obter(id);
 
         return ResponseEntity.ok(servicoObtido);

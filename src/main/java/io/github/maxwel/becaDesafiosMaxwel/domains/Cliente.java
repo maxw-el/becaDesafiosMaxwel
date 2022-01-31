@@ -1,18 +1,23 @@
 package io.github.maxwel.becaDesafiosMaxwel.domains;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Cliente {
 
-    private String nome;
+    @Id
     private String cpf;
+
+    private String nome;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String cpf) {
-        this.nome = nome;
+    public Cliente(String cpf, String nome) {
         this.cpf = cpf;
+        this.nome = nome;
     }
 
     public String getNome() {
