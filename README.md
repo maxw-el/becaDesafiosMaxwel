@@ -23,3 +23,7 @@ O salão cadastra seus serviços. O cliente acessa esses serviços e faz um agen
 - Criadas as classes de repository;
 - Bando de dados H2 configurado;
 - Implementado na camada service.
+
+#### desafio5
+- Aplicados os conceitos de DTO;
+- Relacionamento de tabelas feito;
