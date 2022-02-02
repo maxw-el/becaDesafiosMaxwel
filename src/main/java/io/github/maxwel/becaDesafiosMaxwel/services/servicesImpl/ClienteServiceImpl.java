@@ -4,9 +4,6 @@ import io.github.maxwel.becaDesafiosMaxwel.domains.Cliente;
 import io.github.maxwel.becaDesafiosMaxwel.repositories.ClienteRepository;
 import io.github.maxwel.becaDesafiosMaxwel.services.ClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +16,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public Cliente criar(Cliente cliente) {
-        Cliente clienteSalvo = clienteRepository.save(cliente);
 
-        return clienteSalvo;
+        return clienteRepository.save(cliente);
     }
 
     @Override

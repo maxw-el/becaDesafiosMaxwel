@@ -1,6 +1,9 @@
 package io.github.maxwel.becaDesafiosMaxwel.controllers;
 
 import io.github.maxwel.becaDesafiosMaxwel.domains.Agendamento;
+import io.github.maxwel.becaDesafiosMaxwel.dtos.requests.PostAgendamentoRequestDto;
+import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.GetAgendamentoListarResponseDto;
+import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.PostAgendamentoResponseDto;
 import io.github.maxwel.becaDesafiosMaxwel.services.AgendamentoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,10 +32,10 @@ public class AgendamentoController {
                     content = @Content)
     })
     @PostMapping
-    public ResponseEntity<Agendamento> criar(@RequestBody Agendamento agendamento) {
-        Agendamento agendamentoCriado = agendamentoService.criar(agendamento);
+    public ResponseEntity<PostAgendamentoResponseDto> criar(@RequestBody PostAgendamentoRequestDto postAgendamentoRequestDto) {
+        PostAgendamentoResponseDto postAgendamentoResponseDto = agendamentoService.criar(postAgendamentoRequestDto);
 
-        return ResponseEntity.created(null).body(agendamentoCriado);
+        return ResponseEntity.created(null).body(postAgendamentoResponseDto);
     }
 
     @Operation(summary = "Deleta um agendamento pela id.")
@@ -93,9 +96,9 @@ public class AgendamentoController {
                     content = @Content)
     })
     @GetMapping
-    public ResponseEntity<List<Agendamento>> listar() {
-        List<Agendamento> listaAgendamentos = agendamentoService.listar();
+    public ResponseEntity<List<GetAgendamentoListarResponseDto>> listar() {
+        List<GetAgendamentoListarResponseDto> getAgendamentoListarResponseDto = agendamentoService.listar();
 
-        return ResponseEntity.ok(listaAgendamentos);
+        return ResponseEntity.ok(getAgendamentoListarResponseDto);
     }
 }
