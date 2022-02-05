@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -29,10 +30,10 @@ public class ClienteController {
                     content = @Content)
     })
     @PostMapping
-    public ResponseEntity<Cliente> criar(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> criar(@RequestBody @Valid Cliente cliente) {
         Cliente clienteCriado = clienteService.criar(cliente);
 
-        return ResponseEntity.created(null).body(clienteCriado);
+       return ResponseEntity.created(null).body(clienteCriado);
     }
 
     @Operation(summary = "Deleta um cliente pelo cpf.")

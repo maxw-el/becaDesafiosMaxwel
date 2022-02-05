@@ -1,51 +1,27 @@
 package io.github.maxwel.becaDesafiosMaxwel.domains;
 
+import lombok.*;
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Builder
 public class Cliente {
 
     @Id
+    @CPF(message = "CPF inválido")
     private String cpf;
 
+    @NotBlank(message = "Nome não pode ser vazio")
+    @Size(max = 80, message = "O nome é muito grande")
     private String nome;
 
-    public Cliente() {
-    }
-
-    public Cliente(String cpf, String nome) {
-        this.cpf = cpf;
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Cliente)) return false;
-        Cliente cliente = (Cliente) o;
-        return getCpf().equals(cliente.getCpf());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getCpf());
-    }
 }

@@ -27,3 +27,8 @@ O salão cadastra seus serviços. O cliente acessa esses serviços e faz um agen
 #### desafio5
 - Aplicados os conceitos de DTO;
 - Relacionamento de tabelas feito;
+
+#### desafio6
+- Adicionadas as validações;
+- Adicionado Mapper(incompleto);
+- Implementado Lombok.
