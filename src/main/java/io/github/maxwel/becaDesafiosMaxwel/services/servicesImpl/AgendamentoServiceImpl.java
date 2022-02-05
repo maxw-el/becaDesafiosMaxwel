@@ -6,6 +6,7 @@ import io.github.maxwel.becaDesafiosMaxwel.domains.Servico;
 import io.github.maxwel.becaDesafiosMaxwel.dtos.requests.PostAgendamentoRequestDto;
 import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.GetAgendamentoListarResponseDto;
 import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.PostAgendamentoResponseDto;
+import io.github.maxwel.becaDesafiosMaxwel.mappers.AgendamentoMapper;
 import io.github.maxwel.becaDesafiosMaxwel.repositories.AgendamentoRepository;
 import io.github.maxwel.becaDesafiosMaxwel.services.AgendamentoService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
     private final AgendamentoRepository agendamentoRepository;
     private final ServicoServiceImpl servicoService;
     private final ClienteServiceImpl clienteService;
+    private final AgendamentoMapper agendamentoMapper;
 
     @Override
     public PostAgendamentoResponseDto criar(PostAgendamentoRequestDto postAgendamentoRequestDto) {
@@ -40,6 +42,7 @@ public class AgendamentoServiceImpl implements AgendamentoService {
         postAgendamentoResponseDto.setMensagem("Seu agendamento foi concluído!");
 
         return postAgendamentoResponseDto;
+
     }
 
     @Override
