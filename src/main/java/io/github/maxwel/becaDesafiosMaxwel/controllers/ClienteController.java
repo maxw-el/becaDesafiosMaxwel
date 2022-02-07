@@ -62,7 +62,7 @@ public class ClienteController {
                     content = @Content)
     })
     @PatchMapping("/{cpf}")
-    public ResponseEntity<Cliente> atualizar(@RequestBody Cliente cliente, @PathVariable String cpf) {
+    public ResponseEntity<Cliente> atualizar(@RequestBody @Valid Cliente cliente, @PathVariable String cpf) {
         Cliente clienteAtualizado = clienteService.atualizar(cliente, cpf);
 
         return ResponseEntity.ok(clienteAtualizado);

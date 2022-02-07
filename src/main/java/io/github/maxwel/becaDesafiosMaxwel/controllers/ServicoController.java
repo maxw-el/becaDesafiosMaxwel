@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class ServicoController {
                     content = @Content)
     })
     @PostMapping
-    public ResponseEntity<Servico> criar(@RequestBody Servico servico) {
+    public ResponseEntity<Servico> criar(@RequestBody @Valid Servico servico) {
         Servico servicoCriado = servicoService.criar(servico);
 
         return ResponseEntity.created(null).body(servicoCriado);
@@ -61,7 +62,7 @@ public class ServicoController {
                     content = @Content)
     })
     @PatchMapping("/{id}")
-    public ResponseEntity<Servico> atualizar(@RequestBody Servico servico, @PathVariable Long id) {
+    public ResponseEntity<Servico> atualizar(@RequestBody @Valid Servico servico, @PathVariable Long id) {
         Servico servicoAtualizado = servicoService.atualizar(servico, id);
 
         return ResponseEntity.ok(servicoAtualizado);

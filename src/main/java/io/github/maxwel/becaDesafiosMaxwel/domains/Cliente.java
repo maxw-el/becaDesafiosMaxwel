@@ -10,10 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
-@Builder
 public class Cliente {
 
     @Id

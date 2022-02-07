@@ -1,9 +1,8 @@
 package io.github.maxwel.becaDesafiosMaxwel.controllers;
 
 import io.github.maxwel.becaDesafiosMaxwel.domains.Agendamento;
-import io.github.maxwel.becaDesafiosMaxwel.dtos.requests.PostAgendamentoRequestDto;
-import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.GetAgendamentoListarResponseDto;
-import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.PostAgendamentoResponseDto;
+import io.github.maxwel.becaDesafiosMaxwel.dtos.requests.AgendamentoRequestDto;
+import io.github.maxwel.becaDesafiosMaxwel.dtos.responses.AgendamentoResponseDto;
 import io.github.maxwel.becaDesafiosMaxwel.services.AgendamentoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,10 +32,10 @@ public class AgendamentoController {
                     content = @Content)
     })
     @PostMapping
-    public ResponseEntity<PostAgendamentoResponseDto> criar(@RequestBody PostAgendamentoRequestDto postAgendamentoRequestDto) {
-        PostAgendamentoResponseDto postAgendamentoResponseDto = agendamentoService.criar(postAgendamentoRequestDto);
+    public ResponseEntity<AgendamentoResponseDto> criar(@RequestBody @Valid AgendamentoRequestDto agendamentoRequestDto) {
+        AgendamentoResponseDto agendamentoResponseDto = agendamentoService.criar(agendamentoRequestDto);
 
-        return ResponseEntity.created(null).body(postAgendamentoResponseDto);
+        return ResponseEntity.created(null).body(agendamentoResponseDto);
     }
 
     @Operation(summary = "Deleta um agendamento pela id.")
@@ -64,7 +64,7 @@ public class AgendamentoController {
                     content = @Content)
     })
     @PatchMapping("/{id}")
-    public ResponseEntity<Agendamento> atualizar(@RequestBody Agendamento agendamento, @PathVariable Long id) {
+    public ResponseEntity<Agendamento> atualizar(@RequestBody @Valid Agendamento agendamento, @PathVariable Long id) {
         Agendamento agendamentoAtualizado = agendamentoService.atualizar(agendamento, id);
 
         return ResponseEntity.ok(agendamentoAtualizado);
@@ -96,9 +96,9 @@ public class AgendamentoController {
                     content = @Content)
     })
     @GetMapping
-    public ResponseEntity<List<GetAgendamentoListarResponseDto>> listar() {
-        List<GetAgendamentoListarResponseDto> getAgendamentoListarResponseDto = agendamentoService.listar();
+    public ResponseEntity<List<AgendamentoResponseDto>> listar() {
+        List<AgendamentoResponseDto> agendamentoListarResponseDTO = agendamentoService.listar();
 
-        return ResponseEntity.ok(getAgendamentoListarResponseDto);
+        return ResponseEntity.ok(agendamentoListarResponseDTO);
     }
 }
