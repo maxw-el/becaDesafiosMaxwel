@@ -3,16 +3,16 @@ package io.github.maxwel.becaDesafiosMaxwel.services.servicesImpl;
 import io.github.maxwel.becaDesafiosMaxwel.domains.Servico;
 import io.github.maxwel.becaDesafiosMaxwel.repositories.ServicoRepository;
 import io.github.maxwel.becaDesafiosMaxwel.services.ServicoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ServicoServiceImpl implements ServicoService {
 
-    @Autowired
-    private ServicoRepository servicoRepository;
+    private final ServicoRepository servicoRepository;
 
     @Override
     public Servico criar(Servico servico) {

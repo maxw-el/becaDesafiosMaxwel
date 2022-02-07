@@ -6,10 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode
-@Builder
 public class Agendamento {
 
     @Id
@@ -17,13 +13,10 @@ public class Agendamento {
     private Long id;
 
     @OneToOne
-    @Setter
     private Servico servico;
 
-    @Setter
     private String horario;
 
     @OneToOne
-    @Setter
     private Cliente cliente;
 }
