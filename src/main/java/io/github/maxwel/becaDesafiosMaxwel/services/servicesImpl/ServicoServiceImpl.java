@@ -1,6 +1,7 @@
 package io.github.maxwel.becaDesafiosMaxwel.services.servicesImpl;
 
 import io.github.maxwel.becaDesafiosMaxwel.domains.Servico;
+import io.github.maxwel.becaDesafiosMaxwel.exceptions.TamanhoNaoValidoException;
 import io.github.maxwel.becaDesafiosMaxwel.repositories.ServicoRepository;
 import io.github.maxwel.becaDesafiosMaxwel.services.ServicoService;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,11 @@ public class ServicoServiceImpl implements ServicoService {
 
     @Override
     public Servico criar(Servico servico) {
-        Servico servicoCriado = servicoRepository.save(servico);
+        if (servico.getNome().length() <= 2) {
+            throw new TamanhoNaoValidoException("Nome do serviço não pode ter menos que 2 caracteres.");
+        }
 
-        return servicoCriado;
+        return servicoRepository.save(servico);
     }
 
     @Override
