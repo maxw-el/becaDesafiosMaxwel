@@ -1,4 +1,4 @@
-- Repositório com os desafios da Beca de Java
+<h1>Repositório com os desafios da Beca de Java</h1>
 
 ## Plataforma Beauty
 
@@ -34,4 +34,10 @@ O salão cadastra seus serviços. O cliente acessa esses serviços e faz um agen
 - Implementado Lombok.
 
 #### desafio7
-- Feito tratamento de erros
+- Feito tratamento de erros.
+
+#### desafio8
+- Criado um docker-compose.yml;
+- Criado um container contendo uma base de dados;
+- API integrada à base de dados;
+- Testes de integração ok.
